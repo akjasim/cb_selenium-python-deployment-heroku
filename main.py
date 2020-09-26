@@ -1,4 +1,7 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 from config import USERNAME, PASSWORD
 import sys
@@ -24,31 +27,37 @@ chrome_options.add_argument("--no-sandbox")
 browser = webdriver.Chrome(executable_path=os.environ.get(
     "CHROMEDRIVER_PATH"), options=chrome_options)
 
+wait = WebDriverWait(driver, 10)
 
 browser.get('https://github.com/login')
 
-login_field = browser.find_element_by_name('login')
+login_field = wait.until(
+    EC.presence_of_element_located((By.NAME, "login"))
+)
 login_field.send_keys(USERNAME)
 
-password_field = browser.find_element_by_name('password')
+password_field = wait.until(
+    EC.presence_of_element_located((By.NAME, "password"))
+)
+
 password_field.send_keys(PASSWORD)
 
 login_field.submit()
 
 browser.get('https://github.com/new')
 
-repo_field = browser.find_element_by_name('repository[name]')
+repo_field = wait.until(EC.presence_of_element_located((By.NAME, 'repository[name]'))
 repo_field.send_keys(repo_name)
 
-visibility_field = browser.find_element_by_xpath(
-    f'//input[@name="repository[visibility]"][@value="{visibility}"]')
+visibility_field=wait.until(EC.presence_of_element_located(
+    (By.XPATH, f'//input[@name="repository[visibility]"][@value="{visibility}"]')))
 visibility_field.click()
 
 repo_field.submit()
 
 try:
-    copy_btn = browser.find_element_by_xpath(
-        '//clipboard-copy[@for="empty-setup-push-repo-echo"]')
+    wait.until(EC.presence_of_element_located(
+        (By.XPATH, '//clipboard-copy[@for="empty-setup-push-repo-echo"]')))
     copy_btn.click()
 
     print(pyperclip.paste())
