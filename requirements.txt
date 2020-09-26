@@ -1,6 +1,2 @@
-autopep8==1.5.4
-pycodestyle==2.6.0
-pyperclip==1.8.0
 selenium==3.141.0
-toml==0.10.1
 urllib3==1.25.10
