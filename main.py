@@ -3,6 +3,7 @@ import time
 from config import USERNAME, PASSWORD
 import sys
 import pyperclip
+import os
 
 try:
     repo_name = sys.argv[1]
