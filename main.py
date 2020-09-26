@@ -46,10 +46,11 @@ login_field.submit()
 
 browser.get('https://github.com/new')
 
-repo_field = wait.until(EC.presence_of_element_located((By.NAME, 'repository[name]'))
+repo_field = wait.until(EC.presence_of_element_located(
+    (By.NAME, 'repository[name]')))
 repo_field.send_keys(repo_name)
 
-visibility_field=wait.until(EC.presence_of_element_located(
+visibility_field = wait.until(EC.presence_of_element_located(
     (By.XPATH, f'//input[@name="repository[visibility]"][@value="{visibility}"]')))
 visibility_field.click()
 
