@@ -4,9 +4,9 @@ Deploying Python Selenium based project live into Heroku.
 
 Article based on YouTube video:
 
-English : 
+English : https://youtu.be/kHByjOJh7O0
 
-Malayalam : 
+Malayalam : https://youtu.be/7glbuNJN_6A
 
 ## Usage
 
